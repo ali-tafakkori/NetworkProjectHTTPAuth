@@ -64,21 +64,13 @@ public class Main {
                         writer.write(response.toString());
                         break;
                     default:
+                        response = new AppHttpResponse();
+                        response.status  =AppHttpStatus.NotFound;
+                        response.content = new String(Files.readAllBytes(Paths.get(".\\src\\pages\\404.html")));
+                        writer.write(response.toString());
+                        break;
 
                 }
-                // Perform authentication based on the extracted username and password
-                /*boolean isAuthenticated = authenticateUser(username, password); // Implement the authenticateUser function
-
-                if (isAuthenticated) {
-                    // Generate the HTML page with student information
-                    String studentInfo = generateStudentInfoPage(username); // Implement the generateStudentInfoPage function
-                    writer.write("HTTP/1.1 200 OK\r\nContent-Length: " + studentInfo.getBytes().length + "\r\n\r\n" + studentInfo);
-                } else {
-                    // Send the error HTML page for authentication failure
-                    String errorPage = generateErrorPage();
-                    writer.write("HTTP/1.1 401 Unauthorized\r\nContent-Length: " + errorPage.getBytes().length + "\r\n\r\n" + errorPage);
-                }*/
-
                 writer.flush();
                 clientSocket.close();
             }
