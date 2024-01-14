@@ -1,7 +1,4 @@
-import models.AppHttpRequest;
-import models.AppHttpResponse;
-import models.AppHttpStatus;
-import models.AppUser;
+import models.*;
 import sun.misc.IOUtils;
 
 import java.io.*;
@@ -42,10 +39,10 @@ public class Main {
                         writer.write(response.toString());
                         break;
                     case "/login":
-                        AppUser user = AuthenticationManager.getInstance().authenticate(request.params.get("username"), request.params.get("password"));
+                        Student student = AuthenticationManager.getInstance().authenticate(request.params.get("username"), request.params.get("password"));
 
                         response = new AppHttpResponse();
-                        if (user != null) {
+                        if (student != null) {
                             response.content = "<!DOCTYPE html>\n" +
                                     "<html lang=\"en\">\n" +
                                     "<head>\n" +
@@ -53,7 +50,7 @@ public class Main {
                                     "    <title>Authentication successful</title>\n" +
                                     "</head>\n" +
                                     "<body>\n" +
-                                    "<h1>Welcome</h1><p>" + user.name + "</p>\n" +
+                                    "<h1>Welcome</h1><p>" + student.firstName + " " + student.lastName + "</p>\n" +
                                     "</body>\n" +
                                     "</html>";
                         } else {
