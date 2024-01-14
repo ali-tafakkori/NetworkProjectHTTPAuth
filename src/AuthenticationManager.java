@@ -21,12 +21,12 @@ public class AuthenticationManager {
     }
 
     public Student authenticate(String username, String password) {
-        while (scanner.hasNext()) {
+        do {
             Student student = Student.parse(scanner.nextLine());
             if (student.username.equals(username) && student.password.equals(password)) {
                 return student;
             }
-        }
+        } while (scanner.hasNext());
         return null;
     }
 }
