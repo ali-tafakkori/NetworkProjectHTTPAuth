@@ -15,6 +15,7 @@ public class Student {
 
     public static Student parse(String data) {
         String[] split = data.split(",");
+        System.out.println(split);
         return new Student(split[0], split[1], split[2], split[3], split[4], split[5], split[6]);
     }
 }
