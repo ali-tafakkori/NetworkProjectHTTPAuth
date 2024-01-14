@@ -1,24 +1,30 @@
 import models.AppUser;
+import models.Student;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class AuthenticationManager {
-    private static AppUser[] appUsers = {
-            new AppUser("ali", "1234", "علی تفکری خسروشاهی"),
-            new AppUser("pirahesh", "3574159", "استاد"),
-    };
 
+    Scanner scanner = new Scanner(new File(".\\data\\student_list.txt"));
     private static AuthenticationManager manager;
 
-    public static AuthenticationManager getInstance() {
+    public AuthenticationManager() throws FileNotFoundException {
+    }
+
+    public static AuthenticationManager getInstance() throws FileNotFoundException {
         if (manager == null) {
             manager = new AuthenticationManager();
         }
         return manager;
     }
 
-    public AppUser authenticate(String username, String password) {
-        for (AppUser user : appUsers) {
-            if (user.username.equals(username) && user.password.equals(password)){
-                return user;
+    public Student authenticate(String username, String password) {
+        while (scanner.hasNext()) {
+            Student student = Student.parse(scanner.nextLine());
+            if (student.username.equals(username) && student.password.equals(password)) {
+                return student;
             }
         }
         return null;
