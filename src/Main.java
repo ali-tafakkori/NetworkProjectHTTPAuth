@@ -51,7 +51,7 @@ public class Main {
                                     "    <title>Authentication successful</title>\n" +
                                     "</head>\n" +
                                     "<body>\n" +
-                                    "<h1>Welcome</h1><p>" + student.firstName + " " + student.lastName + "</p>\n" +
+                                    "<h1>Welcome</h1>" + student.toHtml() + "\n" +
                                     "<div>\n" +
                                     "    <button onclick=\"location.href='/'\">Back</button>\n" +
                                     "</div>\n" +
