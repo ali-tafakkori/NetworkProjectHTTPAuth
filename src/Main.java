@@ -42,12 +42,20 @@ public class Main {
                         writer.write(response.toString());
                         break;
                     case "/login":
-                        //AppUser user = AuthenticationManager.getInstance().authenticate(request.params.get("username"), request.params.get("password"));
-                        AppUser user = AuthenticationManager.getInstance().authenticate("ali", "1234");
+                        AppUser user = AuthenticationManager.getInstance().authenticate(request.params.get("username"), request.params.get("password"));
 
                         response = new AppHttpResponse();
                         if (user != null) {
-                            response.content = "Welcome " + user.name;
+                            response.content = "<!DOCTYPE html>\n" +
+                                    "<html lang=\"en\">\n" +
+                                    "<head>\n" +
+                                    "    <meta charset=\"UTF-8\">\n" +
+                                    "    <title>Authentication successful</title>\n" +
+                                    "</head>\n" +
+                                    "<body>\n" +
+                                    "<h1>Welcome</h1><p>" + user.name + "</p>\n" +
+                                    "</body>\n" +
+                                    "</html>";
                         } else {
                             response.status = AppHttpStatus.Unauthorized;
                             response.content = new String(Files.readAllBytes(Paths.get(".\\src\\pages\\failAuth.html")));
