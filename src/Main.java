@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
+            Scanner scanner = new Scanner(new File(".\\data\\student_list.txt"));
             ServerSocket serverSocket = new ServerSocket(5000);
             System.out.println("Server is running and waiting for connections...");
 
@@ -51,6 +52,9 @@ public class Main {
                                     "</head>\n" +
                                     "<body>\n" +
                                     "<h1>Welcome</h1><p>" + student.firstName + " " + student.lastName + "</p>\n" +
+                                    "<div>\n" +
+                                    "    <button onclick=\"location.href='/'\">Back</button>\n" +
+                                    "</div>\n" +
                                     "</body>\n" +
                                     "</html>";
                         } else {
