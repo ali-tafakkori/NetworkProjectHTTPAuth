@@ -1,7 +1,7 @@
 package models;
 
 public class AppHttpResponse {
-    public AppHttpStatus status;
+    public AppHttpStatus status  = AppHttpStatus.OK;
     public String content = "";
 
     @Override
