@@ -6,12 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class AuthenticationManager {
-
-    Scanner scanner = new Scanner(new File(".\\data\\student_list.txt"));
     private static AuthenticationManager manager;
-
-    public AuthenticationManager() throws FileNotFoundException {
-    }
 
     public static AuthenticationManager getInstance() throws FileNotFoundException {
         if (manager == null) {
@@ -20,13 +15,14 @@ public class AuthenticationManager {
         return manager;
     }
 
-    public Student authenticate(String username, String password) {
-        do {
+    public Student authenticate(String username, String password) throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File(".\\data\\student_list.txt"));
+        while (scanner.hasNext()) {
             Student student = Student.parse(scanner.nextLine());
             if (student.username.equals(username) && student.password.equals(password)) {
                 return student;
             }
-        } while (scanner.hasNext());
+        }
         return null;
     }
 }
