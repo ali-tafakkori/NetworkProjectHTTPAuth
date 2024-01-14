@@ -1,0 +1,2 @@
+ali,1234,1,Ali,Tafakkori Khosrowshahi,15.3,Computer Engineering
+mehran,4321,2,Mehran,Mehrani,17,Electrical engineering
